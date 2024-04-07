@@ -3,3 +3,7 @@ uvicorn main:app --reload
 
 Swagger UI
 http://127.0.0.1:8000/docs
+
+Docker
+docker build -t hello-fastapi .
+docker run -d --name hello-fastapi -p 8000:8000 hello-fastapi
