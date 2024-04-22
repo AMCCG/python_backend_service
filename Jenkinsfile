@@ -17,7 +17,7 @@ pipeline {
             steps {
                 echo 'Building Image..'
                 bat 'docker --version'
-                bat 'docker build -t hello-fastapi .'
+                bat 'docker build -t hello-fastapi:0.0.1-JENKINS .'
             }
         }
         stage('Deploy') {
@@ -26,7 +26,7 @@ pipeline {
                     input message: 'Do you want to approve the deployment?', ok: 'Yes'
                 }
                 echo 'Deploying....'
-                bat 'docker run -d --name hello-fastapi -p 8000:8000 hello-fastapi'
+                bat 'docker run -d --name hello-fastapi -p 8000:8000 hello-fastapi:0.0.1-JENKINS'
             }
         }
     }

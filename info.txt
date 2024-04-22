@@ -5,5 +5,18 @@ Swagger UI
 http://127.0.0.1:8000/docs
 
 Docker
-docker build -t hello-fastapi .
-docker run -d --name hello-fastapi -p 8000:8000 hello-fastapi
+docker build -t hello-fastapi:0.0.1-JENKINS .
+docker run -d --name hello-fastapi -p 8000:8000 hello-fastapi:0.0.1-JENKINS
+docker container ls --all
+docker image ls --all
+
+Kubernetes
+kubectl create deployment hello-fastapi --image=hello-fastapi:0.0.1-JENKINS
+kubectl get deployment
+kubectl get pod
+kubectl expose deployment hello-fastapi --type=LoadBalancer --port=8000
+kubectl get service
+kubectl describe service spring-hello-world
+
+kubectl delete deployment hello-fastapi
+kubectl delete service hello-fastapi
