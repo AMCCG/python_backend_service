@@ -1,9 +1,22 @@
 from typing import Union
 from pydantic import BaseModel
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
+from constant import Constant
 
 app = FastAPI()
 
+@app.get(Constant.ROOT_PATH+"/health/liveness")
+def health_liveness( request: Request):
+    return {"status": "OK"}
+
+@app.get(Constant.ROOT_PATH+"/greeting")
+def greeting( request: Request):
+    return {
+        "greeting":"Hello World Python",
+        "hostname":"http://127.0.0.1:8000",
+        "version":"v1",
+        "domain": request.base_url
+    }
 
 class Item(BaseModel):
     name: str
@@ -14,12 +27,6 @@ class Item(BaseModel):
 class Person(BaseModel):
     person_id: int
     name: str
-
-
-@app.get("/")
-def read_root():
-    return {"Hello": "World"}
-
 
 @app.get("/items/{item_id}")
 def read_items(item_id: int, q: Union[str, None] = None):
