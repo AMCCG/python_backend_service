@@ -1,16 +1,17 @@
-from app.domain.user.user_model import UserModel
-from app.util.util_constant import Constant
+"""Module providing a User Router"""
 from fastapi import APIRouter
+from app.domain.user.user_service import UserService
+from app.util.util_constant import Constant
 
 router = APIRouter()
+userService:UserService = UserService()
+
 @router.get(Constant.ROOT_PATH+"/users", tags=["users"])
 def fetch_user():
-   
-    return [
-        UserModel(id=1,username="John Python"),
+    """Fetch all user"""
+    return userService.get_users()
 
-    ]
-
-@router.get(Constant.ROOT_PATH+"/users/{item_id}", tags=["users"])
-def fetch_user_by_id(item_id: int):
-    return UserModel(id=item_id,username="John Python")
+@router.get(Constant.ROOT_PATH+"/users/{user_id}", tags=["users"])
+def fetch_user_by_id(user_id: int):
+    """Fetch user by id"""
+    return userService.get_users_by_id(user_id)
