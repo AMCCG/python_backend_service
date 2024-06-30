@@ -8,9 +8,13 @@ app = FastAPI()
 
 app.include_router(users.router)
 
-@app.get(Constant.ROOT_PATH+"/health/liveness")
+@app.get(Constant.ROOT_PATH+"/actuator/health/liveness")
 def health_liveness( request: Request):
-    return {"status": "OK"}
+    return {"status": "UP"}
+
+@app.get(Constant.ROOT_PATH+"/actuator/health/readiness")
+def health_liveness( request: Request):
+    return {"status": "UP"}
 
 @app.get(Constant.ROOT_PATH+"/greeting")
 def greeting( request: Request):
