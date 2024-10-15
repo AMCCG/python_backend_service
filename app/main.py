@@ -1,24 +1,13 @@
 """Module providing a Main App"""
 from fastapi import FastAPI, Request
-from app.routes import users, model
+from app.routes import users, model, actuator
 from app.util.util_constant import Constant
 
 app = FastAPI()
 
 app.include_router(users.router)
 app.include_router(model.router)
-
-
-@app.get(Constant.ROOT_PATH + "/actuator/health/liveness")
-def health_liveness():
-    """Actuator health liveness"""
-    return {"status": "UP"}
-
-
-@app.get(Constant.ROOT_PATH + "/actuator/health/readiness")
-def health_readiness():
-    """Actuator health readiness"""
-    return {"status": "UP"}
+app.include_router(actuator.router)
 
 
 @app.get(Constant.ROOT_PATH + "/greeting")
