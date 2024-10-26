@@ -27,7 +27,7 @@ pipeline {
                     input message: 'Do you want to approve the deployment?', ok: 'Yes'
                 }
                 echo 'Deploying....'
-                bat 'docker run -d --name hello-fastapi -p 8000:8000 hello-fastapi:0.0.1-JENKINS'
+                bat 'docker run -d --name hello-fastapi -p 8000:8000 --memory=256m hello-fastapi:0.0.1-JENKINS'
             }
         }
     }
