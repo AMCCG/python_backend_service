@@ -11,6 +11,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing..'
+                bat 'pytest'
             }
         }
         stage('Build Image') {
