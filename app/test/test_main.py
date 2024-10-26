@@ -11,5 +11,5 @@ def test_read_root():
     assert response.json() == {
         "greeting": "Hello World Python",
         "hostname": "http://127.0.0.1:8000",
-        "version": "v1"
+        "version": "v12"
     }
