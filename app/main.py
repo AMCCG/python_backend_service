@@ -16,6 +16,5 @@ def greeting(request: Request):
     return {
         "greeting": "Hello World Python",
         "hostname": "http://127.0.0.1:8000",
-        "version": "v1",
-        "domain": request.base_url
+        "version": "v1"
     }
