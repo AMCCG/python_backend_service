@@ -11,7 +11,7 @@ app.include_router(actuator.router)
 
 
 @app.get(Constant.ROOT_PATH + "/greeting")
-def greeting(request: Request):
+async def greeting(request: Request):
     """Greeting"""
     return {
         "greeting": "Hello World Python",
